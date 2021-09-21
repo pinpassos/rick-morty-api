@@ -1,7 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+import requests
 
 
 # Create your views here.
 def characters(request):
-    return HttpResponse('This is our main page of Rick and Morty Application.')
+    urlApi = requests.get('https://rickandmortyapi.com/api/character')
+    context = {
+        
+    }
+    return render(request, 'template', context = context)
