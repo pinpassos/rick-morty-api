@@ -7,6 +7,6 @@ import requests
 def characters(request):
     urlApi = requests.get('https://rickandmortyapi.com/api/character')
     context = {
-        print('oi')
+        
     }
     return render(request, 'template', context = context)
