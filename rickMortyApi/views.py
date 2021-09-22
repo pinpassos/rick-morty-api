@@ -5,8 +5,9 @@ import requests
 
 # Create your views here.
 def characters(request):
-    urlApi = requests.get('https://rickandmortyapi.com/api/character')
+    response = requests.get('https://rickandmortyapi.com/api/character')
+    data = response.json()
     context = {
-        
+        'data': data["results"]
     }
-    return render(request, 'template', context = context)
+    return render(request, 'rickMortyApi/index.html', context = context)
