@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@300&display=swap" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'rickMortyApi/style.css' %}">
     <title>Rick and Morty Api</title>
@@ -13,12 +16,27 @@
     <div class="header">
         <h1>Rick and Morty API</h1>
     </div>
+
         {% for datas in data %}
             <div class="card">
                 <img src="{{datas.image}}" class="card-img-top" alt="{{datas.name}}" style="width: 250px; height: 250px;">
                 <div class="card-body">
-                <p class="card-text">Status: {{datas.status}}</p>
-                <p class="card-text">Name: {{datas.name}}</p>
+                    <p class="card-text"><strong>{{datas.name}}</strong></p>
+                    {% if datas.status == 'Alive' %}
+                    <p class="card-text" style="color: rgb(26, 192, 26);">{{datas.status}}</p>
+                    {% elif datas.status == 'unknown' %}
+                    <p class="card-text" style="color: orange">{{datas.status}}</p>
+                    {% else %}
+                    <p class="card-text" style="color: rgb(199, 38, 38);">{{datas.status}}</p>
+                    {% endif %}
+
+                    {% if datas.origin.name == 'unknown' %}
+                    <p class="card-text origin">Ops! Unknow planet</p>
+                    {% else %}
+                    <p class="card-text origin">{{datas.origin.name}}</p>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
+
+<footer>Developed by Matheus Pinheiro Passos - 2021</footer>
